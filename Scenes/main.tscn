@@ -1,8 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://86cpdvxy7kjh"]
+[gd_scene load_steps=28 format=3 uid="uid://86cpdvxy7kjh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_us24o"]
 [ext_resource type="PackedScene" uid="uid://dfs4xj6f0n8et" path="res://Scenes/woman_figure.tscn" id="2_v0y7b"]
 [ext_resource type="Material" uid="uid://dgqxdsncx4xlv" path="res://Materials/dark_metal_material.tres" id="3_do5x2"]
+[ext_resource type="PackedScene" uid="uid://cv0ceecsopewa" path="res://Scenes/block.tscn" id="3_lywi8"]
+[ext_resource type="Script" path="res://Scenes/display.gd" id="4_bxl5k"]
+[ext_resource type="Theme" uid="uid://bnobm0rknuqhc" path="res://main_theme.tres" id="5_bqkeg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xiayp"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -939,3 +942,58 @@ surface_material_override/0 = ExtResource("3_do5x2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Railing2/SM_Buildings_Rail_1x1_16/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_so3jj")
+
+[node name="Block" parent="." instance=ExtResource("3_lywi8")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -10.8836, 0, -10.4257)
+
+[node name="Block2" parent="." instance=ExtResource("3_lywi8")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -8.50793, 0, -2.7947)
+
+[node name="Block3" parent="." instance=ExtResource("3_lywi8")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -5.81112, 0, 1.61906)
+
+[node name="Block4" parent="." instance=ExtResource("3_lywi8")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.75716, 0, 4.99433)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_bqkeg")
+
+[node name="Items" type="PanelContainer" parent="UI/Control"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("4_bxl5k")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/Items"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Items/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Coins" type="Label" parent="UI/Control/Items/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Coins:"
+
+[node name="Quantity" type="Label" parent="UI/Control/Items/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "0"

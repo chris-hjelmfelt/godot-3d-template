@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c440nt3oxq5ox"]
+
+[ext_resource type="Script" path="res://Scripts/item_data.gd" id="1_w1li5"]
+
+[resource]
+script = ExtResource("1_w1li5")
+item_name = "Coin"
